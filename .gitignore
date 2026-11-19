@@ -1,1 +1,11 @@
-votacao.db
+votacao.db*
+instance/
+backups/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+frontend/node_modules/
+frontend/dist/
+documentos/

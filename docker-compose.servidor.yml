@@ -1,0 +1,20 @@
+# Produção no servidor compartilhado da VSystems.
+# O HTTPS é feito pelo Caddy do próprio servidor (/srv/caddy/sites/quorum.caddy),
+# então aqui só sobe o app, publicado apenas em 127.0.0.1:8102.
+# Uso (no servidor, em /srv/apps/quorum):  docker compose -f docker-compose.servidor.yml up -d --build
+name: quorum
+
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      ATRAS_DE_PROXY: "1"
+    volumes:
+      - quorum_dados:/data
+    ports:
+      - "127.0.0.1:8102:8000"
+
+volumes:
+  quorum_dados:
